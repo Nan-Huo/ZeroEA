@@ -69,7 +69,7 @@ Take the dataset "0_3" of DBP15K (ZH-EN) as an example, the folder "0_3" (means 
 
 ### Run Experiments
 
-**To run ZeroEA without tool use**, please first generate the discrete prompts as the input of BERT:
+**To run ZeroEA without tool use**, please first go to **`run/`** folder and generate the discrete prompts as the input of BERT:
 ```bash
 python3 ZeroEA_input_generate_undirected  ../data/DBP15K/zh_en/ text_input_no_train_11_wxt.txt text_input_no_train_22_wxt.txt False
 ```
