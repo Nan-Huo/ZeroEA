@@ -15,7 +15,7 @@
 
 ## Overview
 ZeroEA is a novel **zero-training** entity alignment framework for knowledge graphs. It bridges the gap between graph structure and plain text by converting KG topology into textual context suitable for PLM input. Additionally, in order to provide PLMs with concise and clear input text of reasonable length, we design a motif-based neighborhood
-filter to eliminate noisy neighbors. Notably, ZeroEA can **outperform state-of-the-art supervised baselines** and our study highlights the considerable potential of EA technique in improving the performance of downstream tasks, thereby benefitting the broader research field.
+filter to eliminate noisy neighbors. Notably, ZeroEA can **outperform state-of-the-art supervised baselines**, and our study highlights the considerable potential of EA technique in improving the performance of downstream tasks, thereby benefitting the broader research field.
 
 
 ## Installation
@@ -49,4 +49,5 @@ You can download the DBP15K data from [here](https://drive.google.com/file/d/1No
 
 **`bash run/run.sh`**
 
-**And to run all ablation studies**, please go to the folders named "ablation_*" and run the code accordingly .
+**And to run all ablation studies**
+Please go to the folders named "ablation_*" and run the code accordingly.
