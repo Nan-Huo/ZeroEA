@@ -23,7 +23,7 @@ filter to eliminate noisy neighbors. Notably, ZeroEA can **outperform state-of-t
 ### Create environment and download dependencies
 • Please create the virtual environment through
 ```bash
-conda create -n zeroea python=3.6
+conda create -n zeroea python=3.7
 source activate zeroea
 ```
 • Also, download dependencies:
@@ -41,7 +41,7 @@ torchtext==0.10.0
 
 You can download the DBP15K data from [here](https://drive.google.com/file/d/1Now8iTn37QYMOUC80swlBq9QKxKhFmSU/view) and DWY100K data from [here](https://github.com/nju-websoft/BootEA/tree/master/dataset/DWY100K).
 
-### Directory structure ([Reference](https://github.com/nju-websoft/JAPE/tree/master))
+### Directory structure [1]
 Take DBP15K (ZH-EN) as an example, the folder "zh_en" contains:
 * all_attrs_range: the range code of attributes in source KG (ZH);
 * ent_ILLs: all entity links (15K);
@@ -54,7 +54,7 @@ Take DBP15K (ZH-EN) as an example, the folder "zh_en" contains:
 * training_attrs_1: entity attributes in source KG (ZH);
 * training_attrs_2: entity attributes in target KG (EN);
 
-### Dataset files ([Reference](https://github.com/nju-websoft/BootEA/tree/master))
+### Dataset files [2]
 Take the dataset "0_3" of DBP15K (ZH-EN) as an example, the folder "0_3" (means 30% training data split) contains:
 * ent_ids_1: ids for entities in source KG (ZH);
 * ent_ids_2: ids for entities in target KG (EN);
@@ -90,11 +90,14 @@ python3 ZeroEA_use_tool.py 80 ../data/DBP15K/zh_en/text_input_no_train_11_wxt_KI
 ```
 where the first parameter is the Rouge score threshold; the next two parameters are the input prompts (with tool use) files directory; the fourth and fifth parameters are the input prompts (without tool use) files directory.
 
-Or you can run the following line:
-**`bash run/run.sh`**
+Or you can run the bash file under the **`run`** folder for your convenience.
 
 **And to run all ablation studies**, please go to the folders named "ablation_*" and run the code accordingly.
-
+We take ablation_PLMs as an example, if you want to run the experiment using **ELECTRA**, you use the following lines:
+```bash
+cd ablation_PLMs
+python3 ZeroEA_MASK_prompt_BERT_ALBERT_ELECTRA_ablation.py ELECTRA > Results/Ablation_ELECTRA.txt &
+```
 
 ## Future Work
 In this study, we are the first to explore the potential advantages
@@ -108,6 +111,8 @@ Thus, we aim to explore more complex downstream tasks, which
 consider EA as the intermediate task, thereby initiating a novel
 discussion on the influence of EA in complex and realistic scenarios.
 
-
+### Reference
+[1] https://github.com/nju-websoft/JAPE/tree/master
+[2] https://github.com/nju-websoft/BootEA/tree/master
 
 
