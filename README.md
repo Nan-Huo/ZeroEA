@@ -90,10 +90,10 @@ python3 ZeroEA_use_tool.py 80 ../data/DBP15K/zh_en/text_input_no_train_11_wxt_KI
 ```
 where the first parameter is the Rouge score threshold; the next two parameters are the input prompts (with tool use) files directory; the fourth and fifth parameters are the input prompts (without tool use) files directory.
 
-Or you can run the bash file under the **`run`** folder for your convenience.
+Or you can run the bash file under the **`run/`** folder for your convenience.
 
 **And to run all ablation studies**, please go to the folders named "ablation_*" and run the code accordingly.
-We take ablation_PLMs as an example, if you want to run the experiment using **ELECTRA**, you use the following lines:
+We take ablation_PLMs as an example, if you want to run the experiment using ELECTRA instead of BERT, you use the following lines:
 ```bash
 cd ablation_PLMs
 python3 ZeroEA_MASK_prompt_BERT_ALBERT_ELECTRA_ablation.py ELECTRA > Results/Ablation_ELECTRA.txt &
