@@ -41,7 +41,31 @@ torchtext==0.10.0
 
 You can download the DBP15K data from [here](https://drive.google.com/file/d/1Now8iTn37QYMOUC80swlBq9QKxKhFmSU/view) and DWY100K data from [here](https://github.com/nju-websoft/BootEA/tree/master/dataset/DWY100K).
 
+### Directory structure
+Take DBP15K (ZH-EN) as an example, the folder "zh_en" contains:
+* all_attrs_range: the range code of attributes in source KG (ZH);
+* ent_ILLs: all entity links (15K);
+* rel_ILLs: all relationship links (with the same URI or localname);
+* s_labels: cross-lingual entity labels of source KG (ZH);
+* s_triples: relationship triples of source KG (ZH);
+* sup_attr_pairs: all attribute links (with the same URI or localname);
+* t_labels: cross-lingual entity labels of target KG (EN);
+* t_triples: relationship triples of target KG (EN);
+* training_attrs_1: entity attributes in source KG (ZH);
+* training_attrs_2: entity attributes in target KG (EN);
 
+### Dataset files
+Take the dataset "0_3" of DBP15K (ZH-EN) as an example, the folder "0_3" (means 30% training data split) contains:
+* ent_ids_1: ids for entities in source KG (ZH);
+* ent_ids_2: ids for entities in target KG (EN);
+* ref_ent_ids: entity links encoded by ids for testing;
+* ref_ents: URIs of entity links for testing;
+* rel_ids_1: ids for relationships in source KG (ZH);
+* rel_ids_2: ids for relationships in target KG (EN);
+* sup_ent_ids: entity links encoded by ids for training;
+* sup_rel_ids: relationship links encoded by ids for training;
+* triples_1: relationship triples encoded by ids in source KG (ZH);
+* triples_2: relationship triples encoded by ids in target KG (EN);
 
 ### Run Experiments
 
