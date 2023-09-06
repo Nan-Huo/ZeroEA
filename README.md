@@ -49,8 +49,7 @@ You can download the DBP15K data from [here](https://drive.google.com/file/d/1No
 ```bash
 python3 ZeroEA_input_generate_undirected  ../data/DBP15K/zh_en/ text_input_no_train_11_wxt.txt text_input_no_train_22_wxt.txt False
 ```
-You can change the file directory at the first parameter; the file names of the prompts of two KGs at the second and third parameters; and the tool use flag at the last parameter.  
-Then run the encoding & eval code:
+You can change the file directory at the first parameter; the file names of the prompts of two KGs at the second and third parameters; and the tool use flag at the last parameter. Then run the encoding & eval code:
 ```bash
 python3 ZeroEA_base.py ../data/DBP15K/zh_en/text_input_no_train_11_wxt.txt ../data/DBP15K/zh_en/text_input_no_train_22_wxt.txt
 ```
@@ -61,8 +60,7 @@ where the two parameters are the input prompts files directory.
 ```bash
 python3 ZeroEA_input_generate_undirected  ../data/DBP15K/zh_en/ text_input_no_train_11_wxt_KI.txt text_input_no_train_22_wxt_KI.txt True
 ```
-You can change the file directory at the first parameter; the file names of the prompts of two KGs at the second and third parameters; and the tool use flag at the last parameter.  
-Then run the encoding & eval code:
+You can change the file directory at the first parameter; the file names of the prompts of two KGs at the second and third parameters; and the tool use flag at the last parameter. Then run the encoding & eval code:
 ```bash
 python3 ZeroEA_use_tool.py 80 ../data/DBP15K/zh_en/text_input_no_train_11_wxt_KI.txt ../data/DBP15K/zh_en/text_input_no_train_22_wxt_KI.txt ../data/DBP15K/zh_en/text_input_no_train_11_wxt.txt ../data/DBP15K/zh_en/text_input_no_train_22_wxt.txt
 ```
