@@ -2,6 +2,7 @@
 
 [![Python 3.7+](https://img.shields.io/badge/Python-3.7+-teal.svg)](https://www.python.org/downloads/release/python-390/)
 [![Pytorch 1.8+](https://img.shields.io/badge/Pytorch-1.8+-red.svg)](https://pytorch.org/blog/pytorch-1.8-released/)
+[![Transformers 4.8+](https://img.shields.io/badge/Transformers-4.8+-cine.svg)](https://pypi.org/project/transformers/)
 [![BERT 1.8+](https://img.shields.io/badge/BERT-PLM-blue.svg)](https://huggingface.co/bert-base-uncased)
 [![motif 1.8+](https://img.shields.io/badge/Motif-graph-yellow.svg)](https://en.wikipedia.org/wiki/Network_motif)
 [![DBP15K 1.8+](https://img.shields.io/badge/DBP15K-benchmark-green.svg)](https://drive.google.com/file/d/1Now8iTn37QYMOUC80swlBq9QKxKhFmSU/view)
