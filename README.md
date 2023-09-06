@@ -8,7 +8,7 @@
 [![Leaderboard 1.8+](https://img.shields.io/badge/SPIDER-benchmark-pink.svg)](https://yale-lily.github.io/spider)
 
 <p align="center" width="100%">
-<a><img src="ZeroEA.png" style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
+<a><img src="img/ZeroEA.png" style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
 </p>
 
 
