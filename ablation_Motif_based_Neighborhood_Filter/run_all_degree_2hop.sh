@@ -1,0 +1,120 @@
+#!/usr/bin/env bash
+
+# Generation
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop_KI.py 3 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop_KI.py 5 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop_KI.py 8 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop_KI.py 10 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop_KI.py 12 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop_KI.py 15 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop_KI.py 18 2 &
+# wait
+
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop.py 3 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop.py 5 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop.py 8 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop.py 10 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop.py 12 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop.py 15 2 &
+nohup python3 prompt_input_generate_undirected_baseline_degree_3hop.py 18 2 &
+wait
+
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop_KI.py 3 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop_KI.py 5 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop_KI.py 8 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop_KI.py 10 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop_KI.py 12 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop_KI.py 15 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop_KI.py 18 2 &
+# wait
+
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop.py 3 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop.py 5 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop.py 8 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop.py 10 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop.py 12 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop.py 15 2 &
+nohup python3 prompt_input_generate_undirected_baseline_motif_degree_3hop.py 18 2 &
+wait
+
+
+# Measurement
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_KI_3.txt text_input_no_train_22_wxt_2_hop_degree_KI_3.txt > Results_KI_2_hop/ablation_degree/Output_degree_2_hop_KI_neighbor_3.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_KI_5.txt text_input_no_train_22_wxt_2_hop_degree_KI_5.txt > Results_KI_2_hop/ablation_degree/Output_degree_2_hop_KI_neighbor_5.txt &
+wait
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_KI_8.txt text_input_no_train_22_wxt_2_hop_degree_KI_8.txt > Results_KI_2_hop/ablation_degree/Output_degree_2_hop_KI_neighbor_8.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_KI_10.txt text_input_no_train_22_wxt_2_hop_degree_KI_10.txt > Results_KI_2_hop/ablation_degree/Output_degree_2_hop_KI_neighbor_10.txt &
+wait
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_KI_12.txt text_input_no_train_22_wxt_2_hop_degree_KI_12.txt > Results_KI_2_hop/ablation_degree/Output_degree_2_hop_KI_neighbor_12.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_KI_15.txt text_input_no_train_22_wxt_2_hop_degree_KI_15.txt > Results_KI_2_hop/ablation_degree/Output_degree_2_hop_KI_neighbor_15.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_KI_18.txt text_input_no_train_22_wxt_2_hop_degree_KI_18.txt > Results_KI_2_hop/ablation_degree/Output_degree_2_hop_KI_neighbor_18.txt &
+
+wait
+
+# ---------------------------------------------------------------------------
+
+# Measurement
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_3.txt text_input_no_train_22_wxt_2_hop_degree_3.txt > Results_noKI_2_hop/ablation_degree/Output_degree_2_hop_neighbor_3.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_5.txt text_input_no_train_22_wxt_2_hop_degree_5.txt > Results_noKI_2_hop/ablation_degree/Output_degree_2_hop_neighbor_5.txt &
+wait
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_8.txt text_input_no_train_22_wxt_2_hop_degree_8.txt > Results_noKI_2_hop/ablation_degree/Output_degree_2_hop_neighbor_8.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_10.txt text_input_no_train_22_wxt_2_hop_degree_10.txt > Results_noKI_2_hop/ablation_degree/Output_degree_2_hop_neighbor_10.txt &
+wait
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_12.txt text_input_no_train_22_wxt_2_hop_degree_12.txt > Results_noKI_2_hop/ablation_degree/Output_degree_2_hop_neighbor_12.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_15.txt text_input_no_train_22_wxt_2_hop_degree_15.txt > Results_noKI_2_hop/ablation_degree/Output_degree_2_hop_neighbor_15.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_degree_18.txt text_input_no_train_22_wxt_2_hop_degree_18.txt > Results_noKI_2_hop/ablation_degree/Output_degree_2_hop_neighbor_18.txt &
+wait
+
+
+# Generation
+
+# Measurement
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_KI_3.txt text_input_no_train_22_wxt_2_hop_motif_degree_KI_3.txt > Results_KI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_KI_neighbor_3.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_KI_5.txt text_input_no_train_22_wxt_2_hop_motif_degree_KI_5.txt > Results_KI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_KI_neighbor_5.txt &
+wait
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_KI_8.txt text_input_no_train_22_wxt_2_hop_motif_degree_KI_8.txt > Results_KI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_KI_neighbor_8.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_KI_10.txt text_input_no_train_22_wxt_2_hop_motif_degree_KI_10.txt > Results_KI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_KI_neighbor_10.txt &
+wait
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_KI_12.txt text_input_no_train_22_wxt_2_hop_motif_degree_KI_12.txt > Results_KI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_KI_neighbor_12.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_KI_15.txt text_input_no_train_22_wxt_2_hop_motif_degree_KI_15.txt > Results_KI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_KI_neighbor_15.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_KI_18.txt text_input_no_train_22_wxt_2_hop_motif_degree_KI_18.txt > Results_KI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_KI_neighbor_18.txt &
+
+wait
+
+# ---------------------------------------------------------------------------
+
+# Measurement
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_3.txt text_input_no_train_22_wxt_2_hop_motif_degree_3.txt > Results_noKI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_neighbor_3.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_5.txt text_input_no_train_22_wxt_2_hop_motif_degree_5.txt > Results_noKI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_neighbor_5.txt &
+wait
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_8.txt text_input_no_train_22_wxt_2_hop_motif_degree_8.txt > Results_noKI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_neighbor_8.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_10.txt text_input_no_train_22_wxt_2_hop_motif_degree_10.txt > Results_noKI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_neighbor_10.txt &
+wait
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_12.txt text_input_no_train_22_wxt_2_hop_motif_degree_12.txt > Results_noKI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_neighbor_12.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_15.txt text_input_no_train_22_wxt_2_hop_motif_degree_15.txt > Results_noKI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_neighbor_15.txt &
+
+nohup python3 Prompt_EA_no_train_MASK_prompt_Euc_Cos_KI.py text_input_no_train_11_wxt_2_hop_motif_degree_18.txt text_input_no_train_22_wxt_2_hop_motif_degree_18.txt > Results_noKI_2_hop/ablation_motif_degree/Output_motif_degree_2_hop_neighbor_18.txt &
+
