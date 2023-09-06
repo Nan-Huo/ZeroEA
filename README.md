@@ -49,5 +49,4 @@ You can download the DBP15K data from [here](https://drive.google.com/file/d/1No
 
 **`bash run/run.sh`**
 
-**And to run all ablation studies**
-Please go to the folders named "ablation_*" and run the code accordingly.
+**And to run all ablation studies**, please go to the folders named "ablation_*" and run the code accordingly.
