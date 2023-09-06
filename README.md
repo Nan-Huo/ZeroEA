@@ -50,3 +50,20 @@ You can download the DBP15K data from [here](https://drive.google.com/file/d/1No
 **`bash run/run.sh`**
 
 **And to run all ablation studies**, please go to the folders named "ablation_*" and run the code accordingly.
+
+
+## Future Work
+In this study, we are the first to explore the potential advantages
+of incorporating Entity Alignment (EA) techniques to enhance
+the performance of downstream tasks. A variety of tasks, such as
+dialogue system and vision-based Question Answering (QA), could
+significantly benefit from accurate entity alignment. For instance,
+vision-based QA necessitates the recognition of Regions of Interest
+(ROI) to enable the models to understand objects within the graph.
+Thus, we aim to explore more complex downstream tasks, which
+consider EA as the intermediate task, thereby initiating a novel
+discussion on the influence of EA in complex and realistic scenarios.
+
+
+
+
