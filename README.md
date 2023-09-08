@@ -22,7 +22,7 @@ filter to eliminate noisy neighbors. Notably, ZeroEA can **outperform state-of-t
 ## Installation
 
 ### Create environment and download dependencies
-• Please create the virtual environment through
+• Please create the virtual environment and download dependencies through:
 ```bash
 conda create -n zeroea python=3.7
 source activate zeroea
