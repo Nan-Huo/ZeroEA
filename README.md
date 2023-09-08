@@ -28,7 +28,7 @@ conda create -n zeroea python=3.7
 source activate zeroea
 pip install -r requirements.txt
 ```
-• Also, download dependencies:
+• And the dependencies are in **requirements.txt**, including:
 ```txt
 torch==1.9.0
 numpy==1.19.2
