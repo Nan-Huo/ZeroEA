@@ -1,4 +1,6 @@
-# ZeroEA: A Zero-Training Entity Alignment Framework via Pre-Trained Language Model
+# ZeroEA: A Zero-Training Entity Alignment Framework via Pre-Trained Language Model (VLDB 2024 under review)
+Nan Huo, Reynold Cheng, Ben Kao, Wentao Ning, Nur Al Hasan Haldar, Xiaodong Li, Jinyang Li, Tian Li, Mohammad Matin Najafi, Ge Qu  
+
 
 [![Python 3.7+](https://img.shields.io/badge/Python-3.7+-teal.svg)](https://www.python.org/downloads/release/python-390/)
 [![Pytorch 1.8+](https://img.shields.io/badge/Pytorch-1.8+-red.svg)](https://pytorch.org/blog/pytorch-1.8-released/)
@@ -11,7 +13,6 @@
 <p align="center" width="100%">
 <a><img src="img/ZeroEA.png" style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
 </p>
-
 
 ## Overview
 ZeroEA is a novel **zero-training** entity alignment framework for knowledge graphs. It bridges the gap between graph structure and plain text by converting KG topology into textual context suitable for PLM input. Additionally, in order to provide PLMs with concise and clear input text of reasonable length, we design a motif-based neighborhood
@@ -111,7 +112,8 @@ Thus, we aim to explore more complex downstream tasks, which
 consider EA as the intermediate task, thereby initiating a novel
 discussion on the influence of EA in complex and realistic scenarios.
 
-### Reference
+
+## Reference
 [1] https://github.com/nju-websoft/JAPE/tree/master  
 [2] https://github.com/nju-websoft/BootEA/tree/master
 
