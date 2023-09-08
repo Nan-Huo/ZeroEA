@@ -82,22 +82,23 @@ python3 ZeroEA_input_generate_undirected.py  ../data/DBP15K/zh_en/ text_input_no
 ```
 You can change the file directory at the first parameter; the file names of the prompts of two KGs at the second and third parameters; and the tool use flag at the last parameter. Then run the encoding & eval code:
 ```bash
-python3 ZeroEA_base.py ../data/DBP15K/zh_en/text_input_no_train_11_wxt.txt ../data/DBP15K/zh_en/text_input_no_train_22_wxt.txt
+python3 ZeroEA_base.py ../data/DBP15K/zh_en/text_input_no_train_11_wxt.txt ../data/DBP15K/zh_en/text_input_no_train_22_wxt.txt > Output_ZeroEA_no_tool.txt
 ```
 where the two parameters are the input prompts files directory.  
 
 
 **To run ZeroEA with tool use**, please first generate the discrete prompts as the input of BERT:
 ```bash
+python3 ZeroEA_input_generate_undirected.py  ../data/DBP15K/zh_en/ text_input_no_train_11_wxt.txt text_input_no_train_22_wxt.txt False
 python3 ZeroEA_input_generate_undirected.py  ../data/DBP15K/zh_en/ text_input_no_train_11_wxt_KI.txt text_input_no_train_22_wxt_KI.txt True
 ```
 You can change the file directory at the first parameter; the file names of the prompts of two KGs at the second and third parameters; and the tool use flag at the last parameter. Then run the encoding & eval code:
 ```bash
-python3 ZeroEA_use_tool.py 80 ../data/DBP15K/zh_en/text_input_no_train_11_wxt_KI.txt ../data/DBP15K/zh_en/text_input_no_train_22_wxt_KI.txt ../data/DBP15K/zh_en/text_input_no_train_11_wxt.txt ../data/DBP15K/zh_en/text_input_no_train_22_wxt.txt
+python3 ZeroEA_use_tool.py 80 ../data/DBP15K/zh_en/text_input_no_train_11_wxt_KI.txt ../data/DBP15K/zh_en/text_input_no_train_22_wxt_KI.txt ../data/DBP15K/zh_en/text_input_no_train_11_wxt.txt ../data/DBP15K/zh_en/text_input_no_train_22_wxt.txt > Output_ZeroEA_use_tool.txt
 ```
 where the first parameter is the Rouge score threshold; the next two parameters are the input prompts (with tool use) files directory; the fourth and fifth parameters are the input prompts (without tool use) files directory.
 
-Or you can run the bash file under the **`run/`** folder for your convenience.
+Or you can run the bash file under the **`run/run.sh`** folder for your convenience. And the output will be in the **`run/Output_ZeroEA_use_tool.txt`**
 
 **And to run all ablation studies**, please go to the folders named "ablation_*" and run the code accordingly.
 We take ablation_PLMs as an example, if you want to run the experiment using ELECTRA instead of BERT, you use the following lines:
