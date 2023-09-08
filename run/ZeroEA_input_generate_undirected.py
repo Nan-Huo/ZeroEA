@@ -301,7 +301,7 @@ with open(data_dir+"ill_ent_ids", "r") as GT_file:
             text_save(data_dir+fn_save_2, text_input_all_2)
 
 text_save(data_dir+fn_save_1, text_input_all_1)
-text_save(data_dir+fn_save_1, text_input_all_2)
+text_save(data_dir+fn_save_2, text_input_all_2)
 
 
 

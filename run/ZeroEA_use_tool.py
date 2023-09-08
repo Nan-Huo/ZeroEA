@@ -80,7 +80,7 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
     rouge_score_L_all = []
     rouge_score_R_all = []
     
-    print("++++++++++++++++++++++++++++++++ LR ++++++++++++++++++++++++++++++")
+    # print("++++++++++++++++++++++++++++++++ LR ++++++++++++++++++++++++++++++")
     RR_left = 0
     for i in range(Lvec.shape[0]):
         ### handle special cases:
@@ -126,13 +126,13 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
                 lr_fail_case_dict[i] = {"most_similar_idx": str(rank[0]), "most_similar_distance": str(sim[i, rank[0]]), "err_cosine_distance": str(err_cosine_dist), "mis-align_entity": entity_text_right[rank[0]], "rignt_ent_rank": str(rank_index), "rignt_ent_distance": str(sim[i, rank[rank_index]]), "left_entity": entity_text_left[i], "right_entity": entity_text_right[i]}
                 
                 rouge_score_L.append(rouge_score)
-                print(str(i) + '\t' + entity_text_left[i] + '\t' + entity_text_right[i] + '\t' + '\t' + str(rouge_score), flush=True)
-    print("-------------------------------- End LR ---------------------------")
+                # print(str(i) + '\t' + entity_text_left[i] + '\t' + entity_text_right[i] + '\t' + '\t' + str(rouge_score), flush=True)
+    # print("-------------------------------- End LR ---------------------------")
     
-    print()
-    print()
+    # print()
+    # print()
     
-    print("++++++++++++++++++++++++++++++++ RL ++++++++++++++++++++++++++++++")
+    # print("++++++++++++++++++++++++++++++++ RL ++++++++++++++++++++++++++++++")
     top_rl = [0] * len(top_k)
     RR_right = 0
     for i in range(Rvec.shape[0]):
@@ -179,8 +179,8 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
                 rl_fail_case_dict[i] = {"most_similar_idx": str(rank[0]), "most_similar_distance": str(sim[rank[0], i]), "err_cosine_distance": str(err_cosine_dist), "mis-align_entity": entity_text_left[rank[0]], "rignt_ent_rank": str(rank_index), "rignt_ent_distance": str(sim[rank[rank_index], i]), "left_entity": entity_text_left[i], "right_entity": entity_text_right[i]}
                 
                 rouge_score_R.append(rouge_score)
-                print(str(i) + '\t' + entity_text_left[i] + '\t' + entity_text_right[i] + '\t' + '\t' + str(rouge_score), flush=True)
-    print("-------------------------------- End RL ---------------------------")
+                # print(str(i) + '\t' + entity_text_left[i] + '\t' + entity_text_right[i] + '\t' + '\t' + str(rouge_score), flush=True)
+    # print("-------------------------------- End RL ---------------------------")
                 
     print('For each left:')
     for i in range(len(top_lr)):
@@ -293,9 +293,9 @@ def get_target_embed(filename, fn_ref, KI_idx_list, tokenizer, model, KI_flg):
                 real_label_KI = tmp.replace("\n", '')
                 ref_context_KI[counter_KI] = real_label_KI 
                 if len(real_label_KI) < 1:
-                    print("!!!!!!!!!!!!! In loading process: !!!!!!!!!!!!!!!!!!!!!")
-                    print(tmp)
-                    print(counter_KI)
+                    # print("!!!!!!!!!!!!! In loading process: !!!!!!!!!!!!!!!!!!!!!")
+                    # print(tmp)
+                    # print(counter_KI)
                     raise AssertionError
                 counter_KI += 1
     
@@ -315,9 +315,9 @@ def get_target_embed(filename, fn_ref, KI_idx_list, tokenizer, model, KI_flg):
                 if counter in KI_idx_list:
                     real_label = ref_context_KI[counter]
                     if len(real_label) < 1:
-                        print("!!!!!!!!!!!!! In replace process: !!!!!!!!!!!!!!!!!!!!!")
-                        print(tmp)
-                        print(counter)
+                        # print("!!!!!!!!!!!!! In replace process: !!!!!!!!!!!!!!!!!!!!!")
+                        # print(tmp)
+                        # print(counter)
                         raise AssertionError
 
             ### Adding wrod_embed
@@ -328,11 +328,11 @@ def get_target_embed(filename, fn_ref, KI_idx_list, tokenizer, model, KI_flg):
             if len(entity_text) < 1:
                 entity_text = entity_text_origin.split(')')[-1].strip()
                 if len(entity_text) < 1:
-                    print("!!!!!!!!!!!!! In entity extraction process: !!!!!!!!!!!!!!!!!!!!!")
-                    print(real_label)
-                    print(counter)
-                    print()
-                    print()
+                    # print("!!!!!!!!!!!!! In entity extraction process: !!!!!!!!!!!!!!!!!!!!!")
+                    # print(real_label)
+                    # print(counter)
+                    # print()
+                    # print()
 
             # remove punctuation
             punctuation_eng = string.punctuation
@@ -412,8 +412,8 @@ target_embed_2, c_list_2, entity_text_right, entity_embed_right = get_target_emb
 ### Del too long cases
 tmp_list = list(set(c_list_1 + c_list_2))
 c_list_all = sorted(tmp_list, reverse=True)
-print("--------------------------------------------------")
-print(c_list_all)
+# print("--------------------------------------------------")
+# print(c_list_all)
 if c_list_all:
     for j in c_list_all:
         del target_embed_1[j]
@@ -423,7 +423,7 @@ if c_list_all:
         del entity_embed_left[j]
         del entity_embed_right[j]
 
-print("=====================================================")
+# print("=====================================================")
 Lvec = np.array(target_embed_1)
 Rvec = np.array(target_embed_2)
 # First try
