@@ -328,6 +328,7 @@ def get_target_embed(filename, fn_ref, KI_idx_list, tokenizer, model, KI_flg):
             if len(entity_text) < 1:
                 entity_text = entity_text_origin.split(')')[-1].strip()
                 if len(entity_text) < 1:
+                    raise AssertionError
                     # print("!!!!!!!!!!!!! In entity extraction process: !!!!!!!!!!!!!!!!!!!!!")
                     # print(real_label)
                     # print(counter)
