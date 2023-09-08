@@ -78,7 +78,7 @@ Take the dataset "0_3" of DBP15K (ZH-EN) as an example, the folder "0_3" (means 
 
 **To run ZeroEA without tool use**, please first go to **`run/`** folder and generate the discrete prompts as the input of BERT:
 ```bash
-python3 ZeroEA_input_generate_undirected  ../data/DBP15K/zh_en/ text_input_no_train_11_wxt.txt text_input_no_train_22_wxt.txt False
+python3 ZeroEA_input_generate_undirected.py  ../data/DBP15K/zh_en/ text_input_no_train_11_wxt.txt text_input_no_train_22_wxt.txt False
 ```
 You can change the file directory at the first parameter; the file names of the prompts of two KGs at the second and third parameters; and the tool use flag at the last parameter. Then run the encoding & eval code:
 ```bash
@@ -89,7 +89,7 @@ where the two parameters are the input prompts files directory.
 
 **To run ZeroEA with tool use**, please first generate the discrete prompts as the input of BERT:
 ```bash
-python3 ZeroEA_input_generate_undirected  ../data/DBP15K/zh_en/ text_input_no_train_11_wxt_KI.txt text_input_no_train_22_wxt_KI.txt True
+python3 ZeroEA_input_generate_undirected.py  ../data/DBP15K/zh_en/ text_input_no_train_11_wxt_KI.txt text_input_no_train_22_wxt_KI.txt True
 ```
 You can change the file directory at the first parameter; the file names of the prompts of two KGs at the second and third parameters; and the tool use flag at the last parameter. Then run the encoding & eval code:
 ```bash
