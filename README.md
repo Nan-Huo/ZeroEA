@@ -35,6 +35,7 @@ numpy==1.19.2
 sklearn==1.3.0
 transformers==4.8.2
 torchtext==0.10.0
+... ...
 ```
 
 ## Quick Start
