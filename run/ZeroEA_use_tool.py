@@ -33,31 +33,25 @@ def web_search(ent_text, tokenizer, model):
         injection_txt = ent_text + ": " + mask_txt + output[0:cut_pos+2]
 
     tokens = tokenizer(
-        injection_txt,                  # 分词文本
-        return_token_type_ids=False,    # 返回是前一句还是后一句
-        return_attention_mask=True,     # 返回attention_mask
-        return_tensors='pt')            # 返回pytorch类型的tensor
+        injection_txt,                 
+        return_token_type_ids=False,   
+        return_attention_mask=True, 
+        return_tensors='pt')         
 
     tokenized_text = tokenizer.convert_ids_to_tokens(tokens["input_ids"][0])
 
     with torch.no_grad():    #将输入传入模型，得到每一层的输出信息，这里的encoded_layers为12层，可以打印验证
         encoded_layers = model(input_ids=tokens["input_ids"], attention_mask=tokens["attention_mask"])['last_hidden_state']
         last_hidden_state = encoded_layers[0]
-#         ent_embed = last_hidden_state[0,:].numpy()
         ent_embed = get_embed(last_hidden_state, tokenized_text).numpy()
         
     return np.array(ent_embed)
 
 
-def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left, entity_embed_right, rouge_thresh, top_k=(1, 10, 50, 100)):
-#     sim = scipy.spatial.distance.cdist(Lvec, Rvec, metric='euclidean')
-    
+def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left, entity_embed_right, rouge_thresh, top_k=(1, 10, 50, 100)):    
     # Enhance the entity text if very similar
     for i in range(Lvec.shape[0]):
         ent_cosine_dist = scipy.spatial.distance.cosine(entity_embed_left[i], entity_embed_right[i])
-#         if ent_cosine_dist <= 0.1:
-#             Lvec[i] = Lvec[i] + entity_embed_left[i]
-#             Rvec[i] = Rvec[i] + entity_embed_right[i]
         if ent_cosine_dist <= 0.1:
             Lvec[i] = Lvec[i] + 2*entity_embed_left[i]
             Rvec[i] = Rvec[i] + 2*entity_embed_right[i]
@@ -80,7 +74,6 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
     rouge_score_L_all = []
     rouge_score_R_all = []
     
-    # print("++++++++++++++++++++++++++++++++ LR ++++++++++++++++++++++++++++++")
     RR_left = 0
     for i in range(Lvec.shape[0]):
         ### handle special cases:
@@ -114,25 +107,18 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
         RR_left += 1/(rank_index+1)
         for j in range(len(top_k)):
             if rank_index < top_k[j] or rank_euc_index < top_k[j] or align_flg:  # We assume same entity txt to be aligned
-#             if rank_index < top_k[j] or entity_text_left[i] == entity_text_right[i] or rank_euc_index < top_k[j]:  # We assume same entity txt to be aligned
                 top_lr[j] += 1
                 
             ###: add failure cases
             if (j == 0 and sim[i, rank[0]] > 0.5) or (j == 0 and rank_index >= top_k[j] and (not align_flg) and rank_euc_index >= top_k[j]):
-#             if (j == 0 and sim[i, rank[0]] > 0.5) or (j == 0 and rank_index >= top_k[j] and entity_text_left[i] != entity_text_right[i] and  rank_euc_index >= top_k[j]):
                 lr_fail_list.append(i)
                 err_cosine_dist = scipy.spatial.distance.cosine(entity_embed_left[i], entity_embed_right[rank[0]])
                 lr_fail_case.append((i, rank[0], sim[i, rank[0]], err_cosine_dist, entity_text_right[rank[0]], rank_index, sim[i, rank[rank_index]], entity_text_left[i], entity_text_right[i]))
                 lr_fail_case_dict[i] = {"most_similar_idx": str(rank[0]), "most_similar_distance": str(sim[i, rank[0]]), "err_cosine_distance": str(err_cosine_dist), "mis-align_entity": entity_text_right[rank[0]], "rignt_ent_rank": str(rank_index), "rignt_ent_distance": str(sim[i, rank[rank_index]]), "left_entity": entity_text_left[i], "right_entity": entity_text_right[i]}
                 
                 rouge_score_L.append(rouge_score)
-                # print(str(i) + '\t' + entity_text_left[i] + '\t' + entity_text_right[i] + '\t' + '\t' + str(rouge_score), flush=True)
-    # print("-------------------------------- End LR ---------------------------")
+
     
-    # print()
-    # print()
-    
-    # print("++++++++++++++++++++++++++++++++ RL ++++++++++++++++++++++++++++++")
     top_rl = [0] * len(top_k)
     RR_right = 0
     for i in range(Rvec.shape[0]):
@@ -167,21 +153,17 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
         RR_right += 1/(rank_index+1)
         for j in range(len(top_k)):
             if rank_index < top_k[j] or align_flg or rank_euc_index < top_k[j]:
-#             if rank_index < top_k[j] or entity_text_left[i] == entity_text_right[i] or rank_euc_index < top_k[j]:
                 top_rl[j] += 1
                 
             ### add
             if (j == 0 and sim[rank[0], i] > 0.5) or (j == 0 and rank_index >= top_k[j] and (not align_flg) and  rank_euc_index >= top_k[j]):
-#             if (j == 0 and sim[rank[0], i] > 0.5) or (j == 0 and rank_index >= top_k[j] and entity_text_left[i] != entity_text_right[i] and  rank_euc_index >= top_k[j]):
                 rl_fail_list.append(i)
                 err_cosine_dist = scipy.spatial.distance.cosine(entity_embed_left[rank[0]], entity_embed_right[i])
                 rl_fail_case.append((i, rank[0], sim[rank[0], i], err_cosine_dist, entity_text_left[rank[0]], rank_index, sim[rank[rank_index], i], entity_text_left[i], entity_text_right[i]))
                 rl_fail_case_dict[i] = {"most_similar_idx": str(rank[0]), "most_similar_distance": str(sim[rank[0], i]), "err_cosine_distance": str(err_cosine_dist), "mis-align_entity": entity_text_left[rank[0]], "rignt_ent_rank": str(rank_index), "rignt_ent_distance": str(sim[rank[rank_index], i]), "left_entity": entity_text_left[i], "right_entity": entity_text_right[i]}
                 
                 rouge_score_R.append(rouge_score)
-                # print(str(i) + '\t' + entity_text_left[i] + '\t' + entity_text_right[i] + '\t' + '\t' + str(rouge_score), flush=True)
-    # print("-------------------------------- End RL ---------------------------")
-                
+   
     print('For each left:')
     for i in range(len(top_lr)):
         print('Hits@%d: %.2f%%' % (top_k[i], top_lr[i] / Lvec.shape[0] * 100))
@@ -218,9 +200,6 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
 
 
 def get_embed(summed_last_4_layers, tokenized_text):
-#     mask_idx = tokenized_text.index("[MASK]")
-#     cls_idx = tokenized_text.index("[CLS]")
-#     summed_embed = summed_last_4_layers[mask_idx] + summed_last_4_layers[cls_idx]
     sep_idx = tokenized_text.index(".")
     cls_idx = tokenized_text.index("[CLS]")
     summed_embed = summed_last_4_layers[cls_idx]
@@ -293,9 +272,6 @@ def get_target_embed(filename, fn_ref, KI_idx_list, tokenizer, model, KI_flg):
                 real_label_KI = tmp.replace("\n", '')
                 ref_context_KI[counter_KI] = real_label_KI 
                 if len(real_label_KI) < 1:
-                    # print("!!!!!!!!!!!!! In loading process: !!!!!!!!!!!!!!!!!!!!!")
-                    # print(tmp)
-                    # print(counter_KI)
                     raise AssertionError
                 counter_KI += 1
     
@@ -315,9 +291,6 @@ def get_target_embed(filename, fn_ref, KI_idx_list, tokenizer, model, KI_flg):
                 if counter in KI_idx_list:
                     real_label = ref_context_KI[counter]
                     if len(real_label) < 1:
-                        # print("!!!!!!!!!!!!! In replace process: !!!!!!!!!!!!!!!!!!!!!")
-                        # print(tmp)
-                        # print(counter)
                         raise AssertionError
 
             ### Adding wrod_embed
@@ -329,11 +302,6 @@ def get_target_embed(filename, fn_ref, KI_idx_list, tokenizer, model, KI_flg):
                 entity_text = entity_text_origin.split(')')[-1].strip()
                 if len(entity_text) < 1:
                     raise AssertionError
-                    # print("!!!!!!!!!!!!! In entity extraction process: !!!!!!!!!!!!!!!!!!!!!")
-                    # print(real_label)
-                    # print(counter)
-                    # print()
-                    # print()
 
             # remove punctuation
             punctuation_eng = string.punctuation
@@ -356,10 +324,10 @@ def get_target_embed(filename, fn_ref, KI_idx_list, tokenizer, model, KI_flg):
 
             input_txt_ent = "[MASK] is identical with " + entity_text +'. '
             tokens_ent = tokenizer(
-                input_txt_ent,                  # 分词文本
-                return_token_type_ids=False,    # 返回是前一句还是后一句
-                return_attention_mask=True,     # 返回attention_mask
-                return_tensors='pt')            # 返回pytorch类型的tensor
+                input_txt_ent,                
+                return_token_type_ids=False,    
+                return_attention_mask=True,   
+                return_tensors='pt')        
 
             tokenized_ent_text = tokenizer.convert_ids_to_tokens(tokens_ent["input_ids"][0])
             encoded_layers_ent = model(input_ids=tokens_ent["input_ids"], attention_mask=tokens_ent["attention_mask"])['last_hidden_state']
@@ -369,18 +337,17 @@ def get_target_embed(filename, fn_ref, KI_idx_list, tokenizer, model, KI_flg):
             entity_embed_all.append(entity_embed.detach().numpy())
 
             tokens = tokenizer(
-                input_txt_all,                  # 分词文本
-                return_token_type_ids=False,    # 返回是前一句还是后一句
-                return_attention_mask=True,     # 返回attention_mask
-                return_tensors='pt')            # 返回pytorch类型的tensor
+                input_txt_all,                
+                return_token_type_ids=False,  
+                return_attention_mask=True,   
+                return_tensors='pt')         
 
             tokenized_text = tokenizer.convert_ids_to_tokens(tokens["input_ids"][0])
 
-            with torch.no_grad():    #将输入传入模型，得到每一层的输出信息，这里的encoded_layers为12层，可以打印验证
+            with torch.no_grad():   
                 try:
                     encoded_layers = model(input_ids=tokens["input_ids"], attention_mask=tokens["attention_mask"])['last_hidden_state']
                     last_hidden_state = encoded_layers[0]
-#                     tokens = last_hidden_state[0,:]
                     tokens = get_embed(last_hidden_state, tokenized_text)
                     target_embed.append(tokens.numpy())
                 except:
@@ -403,18 +370,15 @@ print("threshold_KI is: ", threshold_KI, flush=True)
 bert_model = 'bert-base-uncased'  #"bert-base-multilingual-cased"
 tokenizer = BertTokenizer.from_pretrained(bert_model)
 model = BertModel.from_pretrained(bert_model, output_hidden_states=True)
-model.eval()  #这里是验证模型，可以节省很多不必要的反向传播
+model.eval()  
 
 KI_idx_list, KI_ratio = KI_checker(input_prompt_dir_1, input_prompt_dir_2, threshold_KI)
 target_embed_1, c_list_1, entity_text_left, entity_embed_left = get_target_embed(input_prompt_dir_1, input_prompt_dir_KI_1, KI_idx_list, tokenizer, model, True)
 target_embed_2, c_list_2, entity_text_right, entity_embed_right = get_target_embed(input_prompt_dir_2, input_prompt_dir_KI_2, KI_idx_list, tokenizer, model, False)
 
 
-### Del too long cases
 tmp_list = list(set(c_list_1 + c_list_2))
 c_list_all = sorted(tmp_list, reverse=True)
-# print("--------------------------------------------------")
-# print(c_list_all)
 if c_list_all:
     for j in c_list_all:
         del target_embed_1[j]
@@ -424,10 +388,9 @@ if c_list_all:
         del entity_embed_left[j]
         del entity_embed_right[j]
 
-# print("=====================================================")
 Lvec = np.array(target_embed_1)
 Rvec = np.array(target_embed_2)
-# First try
+
 if threshold_KI >= 0.7:
     threshold_rouge = threshold_KI
 else:
