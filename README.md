@@ -26,6 +26,7 @@ filter to eliminate noisy neighbors. Notably, ZeroEA can **outperform state-of-t
 ```bash
 conda create -n zeroea python=3.7
 source activate zeroea
+pip install -r requirements.txt
 ```
 • Also, download dependencies:
 ```txt
