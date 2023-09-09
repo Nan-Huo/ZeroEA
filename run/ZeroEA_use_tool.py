@@ -402,20 +402,20 @@ print("******************************************** KI Ratio: % ****************
 print(KI_ratio)
 
 # Knowledge injection
-for i in failure_list:
-    ent_text_l = entity_text_left[i]
-    ent_text_r = entity_text_right[i]
-    ent_embed_l = web_search(ent_text_l, tokenizer, model)
-    ent_embed_r = web_search(ent_text_r, tokenizer, model)
-    injection_cosine_dist = scipy.spatial.distance.cosine(ent_embed_l, ent_embed_r)
-    if injection_cosine_dist < 0.1:
-        Lvec[i] = Lvec[i] + 2*ent_embed_l
-        Rvec[i] = Rvec[i] + 2*ent_embed_r
-    else:
-        Lvec[i] = Lvec[i] + ent_embed_l
-        Rvec[i] = Rvec[i] + ent_embed_r
+# for i in failure_list:
+#     ent_text_l = entity_text_left[i]
+#     ent_text_r = entity_text_right[i]
+#     ent_embed_l = web_search(ent_text_l, tokenizer, model)
+#     ent_embed_r = web_search(ent_text_r, tokenizer, model)
+#     injection_cosine_dist = scipy.spatial.distance.cosine(ent_embed_l, ent_embed_r)
+#     if injection_cosine_dist < 0.1:
+#         Lvec[i] = Lvec[i] + 2*ent_embed_l
+#         Rvec[i] = Rvec[i] + 2*ent_embed_r
+#     else:
+#         Lvec[i] = Lvec[i] + ent_embed_l
+#         Rvec[i] = Rvec[i] + ent_embed_r
 
-failure_list_new = get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left, entity_embed_right)
+# failure_list_new = get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left, entity_embed_right)
 
 
 
