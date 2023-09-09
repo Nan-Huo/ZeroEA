@@ -85,7 +85,6 @@ def entity2text_2hop(entity_id, ent_ids, rel_ids, trans_flg):
 def entity2text(text_id_l, entity_id, ent_l_text, ent_ids, rel_ids, nodes, graph_id, trans_flg):
     text_all = []
     error_flg = False
-#     ent_l_text = ent_ids[entity_id].strip()
 
     for char_set in text_id_l:
         triple_flg = char_set[1]
