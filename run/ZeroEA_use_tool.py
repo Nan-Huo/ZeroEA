@@ -398,7 +398,7 @@ else:
 failure_list = get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left, entity_embed_right, threshold_rouge)
 
 
-print("******************************************** KI Ratio: % *********************************************************")
+print("******************************************** Web Search Tool Use Ratio: % *********************************************************")
 print(KI_ratio)
 
 # Knowledge injection
