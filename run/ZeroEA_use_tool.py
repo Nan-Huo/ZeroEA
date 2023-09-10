@@ -96,7 +96,7 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
             if rouge_score > rouge_thresh:
                 align_flg = True
         except:
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("Dataset noise: empty entity name! Please ignore this data point:")
             print(entity_text_left[i] + '\t' + entity_text_right[i] + '\t' + str(i))
             print()
             
@@ -142,7 +142,7 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
             if rouge_score > rouge_thresh:
                 align_flg = True
         except:
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            print("Dataset noise: empty entity name! Please ignore this data point:")
             print(entity_text_left[i] + '\t' + entity_text_right[i] + '\t' + str(i))
             print()
             
@@ -163,7 +163,8 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
                 rl_fail_case_dict[i] = {"most_similar_idx": str(rank[0]), "most_similar_distance": str(sim[rank[0], i]), "err_cosine_distance": str(err_cosine_dist), "mis-align_entity": entity_text_left[rank[0]], "rignt_ent_rank": str(rank_index), "rignt_ent_distance": str(sim[rank[rank_index], i]), "left_entity": entity_text_left[i], "right_entity": entity_text_right[i]}
                 
                 rouge_score_R.append(rouge_score)
-   
+
+    print("******************************************** Entity Alignment Performance *********************************************************")
     print('For each left:')
     for i in range(len(top_lr)):
         print('Hits@%d: %.2f%%' % (top_k[i], top_lr[i] / Lvec.shape[0] * 100))
@@ -173,9 +174,11 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
     for i in range(len(top_rl)):
         print('Hits@%d: %.2f%%' % (top_k[i], top_rl[i] / Lvec.shape[0] * 100))
     print('MRR: %.2f%%' % (RR_right / Lvec.shape[0] * 100))
+    print()
+    print()
 
     ##: print Rouge score
-    print("xxxxxxxxxxxxxxxxxxxxxxx: Rouge Score xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+    print("******************************************** Rouge Score *********************************************************")
     print("For Left")
     print("avg_all:", np.mean(np.array(rouge_score_L_all)))
     print("avg_wrong:", np.mean(np.array(rouge_score_L)))
@@ -191,6 +194,8 @@ def get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left,
     print("median_wrong:", np.median(np.array(rouge_score_R)))
     print("min_all:", np.min(np.array(rouge_score_R_all)))
     print("max_wrong:", np.max(np.array(rouge_score_R)))
+    print()
+    print()
     
     
     ### If low confidence, then knowledge injection.
@@ -366,7 +371,7 @@ input_prompt_dir_KI_1 = sys.argv[2]
 input_prompt_dir_KI_2 = sys.argv[3] 
 input_prompt_dir_1 = sys.argv[4]   
 input_prompt_dir_2 = sys.argv[5] 
-print("threshold_KI is: ", threshold_KI, flush=True)
+print("Threshold of Rouge Score is: ", threshold_KI, flush=True)
 bert_model = 'bert-base-uncased'  #"bert-base-multilingual-cased"
 tokenizer = BertTokenizer.from_pretrained(bert_model)
 model = BertModel.from_pretrained(bert_model, output_hidden_states=True)
@@ -398,8 +403,8 @@ else:
 failure_list = get_hits(Lvec, Rvec, entity_text_left, entity_text_right, entity_embed_left, entity_embed_right, threshold_rouge)
 
 
-print("******************************************** Web Search Tool Use Ratio: % *********************************************************")
-print(KI_ratio)
+print("******************************************** Web Search Tool Use Ratio *********************************************************")
+print('%.2f' % KI_ratio, '%')
 
 # Knowledge injection
 # for i in failure_list:
