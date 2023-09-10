@@ -40,7 +40,7 @@ The experiments were conducted on a GNU/Linux server with 8 NVIDIA GeForce RTX 2
 
 ### Data Source
 
-You can download the DBP15K data from [here](https://drive.google.com/file/d/1Now8iTn37QYMOUC80swlBq9QKxKhFmSU/view) and DWY100K data from [here](https://github.com/nju-websoft/BootEA/tree/master/dataset/DWY100K).
+The datasets needed are already in the folder. The DBP15K datasets can be downloaded from [here](https://drive.google.com/file/d/1Now8iTn37QYMOUC80swlBq9QKxKhFmSU/view) and DWY100K datasets from [here](https://github.com/nju-websoft/BootEA/tree/master/dataset/DWY100K).
 
 ### Dataset directory structure [1]
 Take DBP15K (ZH-EN) as an example, the folder "zh_en" contains:
