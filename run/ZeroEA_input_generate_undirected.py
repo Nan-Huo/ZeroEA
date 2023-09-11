@@ -159,7 +159,7 @@ def text_tokenizer(text_all):
 data_dir = sys.argv[1]
 fn_save_1 = sys.argv[2]
 fn_save_2 = sys.argv[3]
-KI_flg = sys.argv[4]
+KI_flg = int(sys.argv[4])
 
 ent_ids = {}
 ent_ids_cn = {}
