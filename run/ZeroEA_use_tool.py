@@ -256,8 +256,11 @@ def KI_checker(fn_1, fn_2, threshold):
 
     rouger = Rouge()
     for i in range(counter_1):
-        scores = rouger.get_scores(context_1[i], context_2[i])
-        rouge_l = scores[0]["rouge-l"]["f"]
+        try:
+            scores = rouger.get_scores(context_1[i], context_2[i])
+            rouge_l = scores[0]["rouge-l"]["f"]
+        except:
+            rouge_l = 0
         if rouge_l < threshold:
             KI_idx_list.append(i)
         
