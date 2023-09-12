@@ -95,12 +95,6 @@ where the first parameter is the Rouge score threshold; the next two parameters 
 Or you can run the bash file under the **`run/run.sh`** folder for your convenience. And the output will be in the **`run/Output_ZeroEA_use_tool.txt`**
 
 **And to run all ablation studies**, please go to the folders named "ablation_*" and run the code accordingly. Some minor changes may be needed.
-We take ablation_PLMs as an example. If you want to run the experiment using ELECTRA instead of BERT, please use the following lines:
-```bash
-cd ablation_PLMs
-python3 ZeroEA_MASK_prompt_BERT_ALBERT_ELECTRA_ablation.py ELECTRA > Results/Ablation_ELECTRA.txt &
-```
-Other ablation study experiments can be done similarly.
 
 ## Future Work
 In this study, we are the first to explore the potential advantages
