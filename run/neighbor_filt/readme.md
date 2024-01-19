@@ -5,21 +5,28 @@ Nan Huo, Reynold Cheng, Ben Kao, Wentao Ning, Nur Al Hasan Haldar, Xiaodong Li, 
 <a><img src="../../img/ZeroEA.png" style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
 </p>
 
-## Global Motif Counting
-ZeroEA is a novel **zero-training** entity alignment framework for knowledge graphs. It bridges the gap between graph structure and plain text by converting KG topology into textual context suitable for PLM input. Additionally, in order to provide PLMs with concise and clear input text of reasonable length, we design a motif-based neighborhood
-filter to eliminate noisy neighbors. Notably, ZeroEA can **outperform state-of-the-art supervised baselines**, and our study highlights the considerable potential of EA technique in improving the performance of downstream tasks, thereby benefitting the broader research field.
+## Codes Usage
+ZeroEA is a novel **zero-training** entity alignment framework for knowledge graphs. It bridges the gap between graph structure and plain text by converting KG topology into textual context suitable for PLM input. Additionally, in order to provide PLMs with concise and clear input text of reasonable length, we design a motif-based neighborhood filter. It includes an offline global motif counting module [1] and an online local motif enumeration module [2]. The two modules are with the same data graph format, i.e., each line as an edge seperated by a blank space. 
 
+## Global Motif Counting
+For the offline global motif counting module, we employ ESCAPE [1], the state-of-the-art algorithm in motif counting domain. It will return the frequency of motifs whose sizes are smaller than 5, and we need to make sure that the instances of the motif are abundant, and this motif is commonly used in the correnponding area or domain.
+
+```bash
+git clone https://bitbucket.org/seshadhri/escape/src/master/
+cd master
+make
+cd python
+python sanitize.py ../../ graphs datagraph
+cd ../wrapper
+python3 subgraph_counts.py ../../graphs/datagraph.edges 5 -i
+```
 
 ## Local Motif Enumeration
 
-• Please create the virtual environment and activate it through:
+For the online local motif enumeration module, we implememnt E-CLog, the state-of-the-art algorithm in local motif enumeration domain. It will return the one-hop neighbors that are within the same motif instace as the query node. 
 ```bash
-conda create -n zeroea python=3.7
-source activate zeroea
-```
-• And then download the dependencies in **requirements.txt** file through:
-```bash
-pip install -r requirements.txt
+javac *.java
+java mfilter ./ graphs/datagraph triangle 10
 ```
 
 
