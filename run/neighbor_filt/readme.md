@@ -23,7 +23,7 @@ python3 subgraph_counts.py ../../graphs/X.edges 5 -i
 
 ## Local Motif Enumeration
 
-For the online local motif enumeration module, we implement E-CLog, the state-of-the-art algorithm in local motif enumeration domain. It will return the one-hop neighbors that are within the same motif instace of the query node. For example, to query the local motif neighbors of node 10 of data graph X, we can issue the following codes (the compling codes by javac only needs to run once).
+For the online local motif enumeration module, we implement E-CLoG [2], the state-of-the-art algorithm in local motif enumeration domain. It will return the one-hop neighbors that are within the same motif instace of the query node. For example, to query the local motif neighbors of node 10 of data graph X, we can issue the following codes (the compling codes by javac only needs to run once).
 ```bash
 javac *.java
 java mfilter graphs X triangle 10
