@@ -6,7 +6,7 @@ Nan Huo, Reynold Cheng, Ben Kao, Wentao Ning, Nur Al Hasan Haldar, Xiaodong Li, 
 </p>
 
 ## Codes Usage
-ZeroEA is a novel **zero-training** entity alignment framework for knowledge graphs. It bridges the gap between graph structure and plain text by converting KG topology into textual context suitable for PLM input. Additionally, in order to provide PLMs with concise and clear input text of reasonable length, we design a motif-based neighborhood filter. It includes an offline global motif counting module [1] and an online local motif enumeration module [2]. The two modules are with the same data graph format, i.e., each line as an edge seperated by a blank space. 
+ZeroEA is a novel **zero-training** entity alignment framework for knowledge graphs. It bridges the gap between graph structure and plain text by converting KG topology into textual context suitable for PLM input. Additionally, in order to provide PLMs with concise and clear input text of reasonable length, we design a motif-based neighborhood filter. It includes an offline global motif counting module [1] and an online local motif enumeration module [2]. The two modules are with the same data graph format, i.e., each line as an edge seperated by a blank space. Assume that the data graph X is located in the folder named "graphs", and the generic motifs (i.e., $k$-paths, $k$-stars, $k$-cycles, and $k$-cliques, $k=3, 4, 5$) [3] are the candidate motifs for us to count globally or enumerate locally. 
 
 ## Global Motif Counting
 For the offline global motif counting module, we employ ESCAPE [1], the state-of-the-art algorithm in motif counting domain. It will return the frequency of motifs whose sizes are smaller than 5, and we need to make sure that the instances of the motif are abundant, and this motif is commonly used in the correnponding area or domain.
@@ -16,20 +16,21 @@ git clone https://bitbucket.org/seshadhri/escape/src/master/
 cd master
 make
 cd python
-python sanitize.py ../../ graphs datagraph
+python sanitize.py ../../ graphs X
 cd ../wrapper
-python3 subgraph_counts.py ../../graphs/datagraph.edges 5 -i
+python3 subgraph_counts.py ../../graphs/X.edges 5 -i
 ```
 
 ## Local Motif Enumeration
 
-For the online local motif enumeration module, we implememnt E-CLog, the state-of-the-art algorithm in local motif enumeration domain. It will return the one-hop neighbors that are within the same motif instace as the query node. 
+For the online local motif enumeration module, we implement E-CLog, the state-of-the-art algorithm in local motif enumeration domain. It will return the one-hop neighbors that are within the same motif instace of the query node. 
 ```bash
 javac *.java
-java mfilter ./ graphs/datagraph triangle 10
+java mfilter graphs X triangle 10
 ```
 
 
 ## Reference
 [1] Dave, V. S., Ahmed, N. K., & Al Hasan, M. (2017, December). E-CLoG: counting edge-centric local graphlets. In 2017 IEEE International Conference on Big Data (Big Data) (pp. 586-595). IEEE.  
 [2] Pinar, A., Seshadhri, C., & Vishal, V. (2017, April). Escape: Efficiently counting all 5-vertex subgraphs. In Proceedings of the 26th international conference on world wide web (pp. 1431-1440).
+[3] Li, X., Cheng, R., Chang, K. C. C., Shan, C., Ma, C., & Cao, H. (2021). On analyzing graphs with motif-paths. Proceedings of the VLDB Endowment, 14(6), 1111-1123.
