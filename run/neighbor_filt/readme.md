@@ -1,10 +1,6 @@
 # Count and Enumerate Motifs in ZeroEA (VLDB 2024 under review)
 Nan Huo, Reynold Cheng, Ben Kao, Wentao Ning, Nur Al Hasan Haldar, Xiaodong Li, Jinyang Li, Tian Li, Mohammad Matin Najafi, Ge Qu  
 
-<p align="center" width="100%">
-<a><img src="../../img/ZeroEA.png" style="width: 100%; min-width: 300px; display: block; margin: auto;"></a>
-</p>
-
 ## Codes Usage
 ZeroEA is a novel **zero-training** entity alignment framework for knowledge graphs. It bridges the gap between graph structure and plain text by converting KG topology into textual context suitable for PLM input. Additionally, in order to provide PLMs with concise and clear input text of reasonable length, we design a motif-based neighborhood filter. It includes an offline global motif counting module [1] and an online local motif enumeration module [2]. The two modules are with the same data graph format, i.e., each line as an edge seperated by a blank space. Assume that the data graph X is located in the folder named "graphs", and the generic motifs (i.e., $k$-paths, $k$-stars, $k$-cycles, and $k$-cliques, $k=3, 4, 5$) [3] are the candidate motifs for us to count globally or enumerate locally. 
 
