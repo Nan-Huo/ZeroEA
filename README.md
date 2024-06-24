@@ -1,4 +1,4 @@
-# ZeroEA: A Zero-Training Entity Alignment Framework via Pre-Trained Language Model (VLDB 2024 under review)
+# ZeroEA: A Zero-Training Entity Alignment Framework via Pre-Trained Language Model (VLDB 2024)
 Nan Huo, Reynold Cheng, Ben Kao, Wentao Ning, Nur Al Hasan Haldar, Xiaodong Li, Jinyang Li, Tian Li, Mohammad Matin Najafi, Ge Qu  
 
 
